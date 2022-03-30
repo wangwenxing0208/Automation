@@ -22,14 +22,14 @@ class Login(BrowserDriver):
     loginError_loc = (By.XPATH, '//*[@id="usernamebox"]/span[2]')
 
     def typeUserName(self, username):
-        self.find_element(*self.username_loc).send_keys(username)
+        self.send_key(self.username_loc,username)
 
     def typePassword(self, password):
-        self.find_element(*self.password_loc).send_keys(password)
+        self.send_key(self.password_loc,password)
 
     @property
     def clickLogin(self):
-        self.find_element(*self.login_loc).click()
+        self.click(self.login_loc)
 
     def login(self, username, password):
         self.typeUserName(username)
@@ -39,4 +39,4 @@ class Login(BrowserDriver):
     @property
     def getLoginError(self):
         '''获取错误的信息'''
-        return self.find_element(*self.loginError_loc).text
+        return self.get_text(self.loginError_loc)
