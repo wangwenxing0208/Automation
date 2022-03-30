@@ -13,17 +13,30 @@
 __author__ = 'star'
 
 
+import platform
 from selenium import webdriver
 from utils.logger import Logger
 from selenium.webdriver.chrome.options import Options
 from data.config import Config
 
+
 logger = Logger(logger="BrowserDriver").getlog()
 
 class BrowserDriver(object):
     path = './drivers/'#这是获取相对路径的方法
-    chrome_driver_path = path + 'chromedriver.exe'
-    ie_driver_path = path + 'IEDriverServer.exe'
+
+    if platform.system() == 'Windows':  #windows系统
+        logger.info('获取到操作系统类型：Windows')
+        chrome_driver_path = path + 'chromedriver.exe'
+        ie_driver_path = path + 'IEDriverServer.exe'
+    elif platform.system() == 'Linux':  #linux系统
+        logger.info('获取到操作系统类型：Linux')
+        chrome_driver_path = path + 'chromedriver_linux'
+    elif platform.system() == 'Darwin':  #mac系统
+        logger.info('获取到操作系统类型：Mac')
+        chrome_driver_path = path + 'chromedriver'
+    else:
+        logger.info('未获取到操作系统类型')
 
     def __init__(self, driver):
         self.driver = driver
