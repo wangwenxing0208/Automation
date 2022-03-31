@@ -17,7 +17,6 @@ import platform
 from selenium import webdriver
 from utils.logger import Logger
 from selenium.webdriver.chrome.options import Options
-from selenium.webdriver.chrome.service import Service
 from data.config import Config
 
 
@@ -47,6 +46,7 @@ class BrowserDriver(object):
 
     def __init__(self, driver):
         self.driver = driver
+        self.c = Config()
 
     def openbrowser(self, driver):
         browser = self.c.get("browserType","browserName")
@@ -69,6 +69,7 @@ class BrowserDriver(object):
             s = Service(self.chrome_driver_path)
             driver = webdriver.Chrome(service=s, options=chrome_options)
             # driver = webdriver.Chrome() #用于Windows系统加载驱动使用
+
             # driver = webdriver.Chrome() #用于linux系统加载驱动使用
             logger.info("启动谷歌浏览器")
         else:

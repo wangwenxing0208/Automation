@@ -22,10 +22,10 @@ class Login(BrowserDriver):
     loginError_loc = (By.XPATH, '//*[@id="usernamebox"]/span[2]')
 
     def typeUserName(self, username):
-        self.send_key(self.username_loc,username)
+        self.send_key(self.username_loc, username)
 
     def typePassword(self, password):
-        self.send_key(self.password_loc,password)
+        self.send_key(self.password_loc, password)
 
     @property
     def clickLogin(self):

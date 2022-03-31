@@ -34,4 +34,4 @@ class Config:
 if __name__ == '__main__':
     c = Config()
     print(c.path())
-    print(c.get('browserType','browserName'))
+    print(c.get('browserType', 'browserName'))
