@@ -4,10 +4,12 @@
   Author     ：star
 """
 
+
 from page.login.login import *
 
 class Login(Login):
     def successLogin(self):
         '''成功登录'''
         self.login('wwx', '123qwe')
+
 

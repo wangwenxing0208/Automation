@@ -25,15 +25,15 @@ class Users(BrowserDriver):
     @property
     def advancedSearch(self):
         self.driver.switch_to.frame(self.iframe)
-        self.find_element(*self.pullDown_loc).click()
+        self.click(self.pullDown_loc)
 
     def userCode(self, usercode):
-        self.find_element(*self.userCode_loc).send_keys(usercode)
-        self.find_element(*self.userCodeSearch_loc).click()
+        self.send_key(self.userCode_loc, usercode)
+        self.click(self.userCodeSearch_loc)
 
     @property
     def listUserCode1(self):
-        return self.find_element(*self.listUserCode1_loc).text
+        return self.get_text(self.listUserCode1_loc)
 
 
 

@@ -29,7 +29,5 @@ class TestcaseUsers(Init,Users,Login):
         time.sleep(3)
         self.assertEqual(self.listUserCode1, value)
 
-
-
 if __name__ == '__main__':
     unittest.main(verbosity=2)

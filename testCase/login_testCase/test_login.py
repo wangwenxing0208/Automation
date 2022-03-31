@@ -12,13 +12,15 @@
 """
 __author__ = 'star'
 
-from common.web.helper import *
+import unittest
+from page.login.init import Init
+from common.login import Login
 
-class QdyTest(Init,Login,Helper):
-    def test_qdyLoin(self, parent='divText', value='userNameNull'):
+class QdyTest(Init,Login):
+    def test_qdyLoin(self):
         '''登录业务：账号密码为空验证'''
         self.login('', '')
-        self.assertEqual(self.getLoginError, self.getXmlUser(parent, value))
+        self.assertEqual(self.getLoginError, '请输入正确用户名')
 
 if __name__ == '__main__':
-    unittest.main(verbosity=2)
+    unittest.main(verbosity=1)

@@ -79,10 +79,10 @@ class BrowserDriver(object):
             self.get_screent_img(value)
 
     def send_key(self, loc, text):
-        logger.info('清空文本框内容: %s...' % loc[1])
+        logger.info('清空文本框内容: %s' % loc[1])
         self.find_element(*loc).clear()
         time.sleep(1)
-        logger.info('输入内容方式 by %s: %s...' % (loc[0], loc[1]))
+        logger.info('输入内容方式 by %s: %s' % (loc[0], loc[1]))
         logger.info('输入内容: %s' % text)
         # self.log.myloggger('Input: %s' % text, flag=0)
         try:
@@ -93,10 +93,10 @@ class BrowserDriver(object):
             self.get_screent_img(text)
 
     def click(self, loc):
-        logger.info('点击元素 by %s: %s...' % (loc[0], loc[1]))
+        logger.info('点击元素 by %s: %s' % (loc[0], loc[1]))
         try:
             self.find_element(*loc).click()
-            logger.info('元素 by %s: %s... 完成'% (loc[0], loc[1]))
+            logger.info('元素 by %s: %s 点击完成'% (loc[0], loc[1]))
             time.sleep(2)
         except AttributeError as e:
             logger.error("无法点击元素: %s" % e)
@@ -163,8 +163,8 @@ class BrowserDriver(object):
     def get_text(self, loc):
         '''获取文本'''
         element = self.find_element(*loc)
-        logger.info('获取元素 by %s: %s...' % (loc[0], loc[1]))
-        logger.info('获取元素文本 by %s: %s...' % element.text)
+        logger.info('获取元素 by %s: %s' % (loc[0], loc[1]))
+        logger.info('获取元素文本 by %s: %s' % element.text)
         return element.text
 
     def get_attribute(self, loc, name):

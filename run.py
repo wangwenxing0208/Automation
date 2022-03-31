@@ -23,12 +23,12 @@ from report.HTMLTestRunner3 import HTMLTestRunner
 
 def create_suite():
     TestSuite = unittest.TestSuite()  # 测试集
-    test_dir = './testCase'
+    test_dir = './common'
     # print(test_dir)
 
     discover = unittest.defaultTestLoader.discover(
         start_dir=test_dir,
-        pattern='test_login.py',
+        pattern='login.py',
         top_level_dir=None
     )
 

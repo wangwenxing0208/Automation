@@ -19,5 +19,5 @@ class HomePage(BrowserDriver):
     username_im = (By.XPATH, '//*[@id="username"]/span[2]')
 
     def UserName(self):
-        return self.find_element(*self.username_im).text
+        self.get_text(self.username_im)
 

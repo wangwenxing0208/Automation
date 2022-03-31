@@ -21,4 +21,5 @@ class Init(unittest.TestCase):
         self.driver = driver.openbrowser(self)
 
     def tearDown(self):
-        self.driver.quit()
+        driver = BrowserDriver(self)
+        self.driver = driver.quit_browser()

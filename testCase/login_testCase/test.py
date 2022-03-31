@@ -12,14 +12,16 @@
 """
 __author__ = 'star'
 
-import logging
+import platform
 
-from utils.logger import Logger
+# 查看系统类型
+print(platform.system())
 
-class aaa(Logger):
-    def bbb(self):
-        logging.info('12331')
-
-
-if __name__=='__main__':
-    aaa().bbb(aaa='111')
+if platform.system() == 'Windows':
+    print('windows')
+elif platform.system() == 'linux':
+    print('linux')
+elif platform.system() == 'Darwin':
+    print('mac')
+else:
+    print('other')
