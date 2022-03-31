@@ -164,7 +164,7 @@ class BrowserDriver(object):
         '''获取文本'''
         element = self.find_element(*loc)
         logger.info('获取元素 by %s: %s' % (loc[0], loc[1]))
-        logger.info('获取元素文本 by %s: %s' % element.text)
+        logger.info('获取元素文本:%s' % element.text)
         return element.text
 
     def get_attribute(self, loc, name):

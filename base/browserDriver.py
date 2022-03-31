@@ -50,9 +50,9 @@ class BrowserDriver(object):
         self.c = Config()
 
     def openbrowser(self, driver):
-        browser = self.c.get("browserType","browserName")
+        browser = self.c.get("browserType", "browserName")
         logger.info("选择的浏览器为: %s 浏览器" % browser)
-        url = self.c.get('pathUrl',"URL")
+        url = self.c.get('pathUrl', "URL")
         logger.info("打开的URL为: %s" % url)
         if browser == "Firefox":
             driver = webdriver.Firefox()
@@ -68,9 +68,8 @@ class BrowserDriver(object):
             chrome_options.add_argument('--disable-extensions')
             chrome_options.add_argument('lang=zh_CN.UTF-8')
             s = Service(self.chrome_driver_path)
-            driver = webdriver.Chrome(service=s, options=chrome_options)
-            # driver = webdriver.Chrome() #用于Windows系统加载驱动使用
-
+            # driver = webdriver.Chrome(service=s, options=chrome_options)
+            driver = webdriver.Chrome(executable_path=self.chrome_driver_path, options=chrome_options) #用于Windows系统加载驱动使用
             # driver = webdriver.Chrome() #用于linux系统加载驱动使用
             logger.info("启动谷歌浏览器")
         else:
