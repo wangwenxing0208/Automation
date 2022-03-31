@@ -17,6 +17,7 @@ import platform
 from selenium import webdriver
 from utils.logger import Logger
 from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.chrome.service import Service
 from data.config import Config
 
 
