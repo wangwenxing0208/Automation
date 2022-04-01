@@ -78,10 +78,10 @@ class SendMail(object):
     def create_attach(self, reportname, reportpath):
         #使用MIMEText完成一个文件的读取操作
         with open(reportpath, mode = "rb") as fp:
-        # _subtype：表示指定文本类型的子类型；默认是文本类型；text/html、text/xml、
-        #text/json、application/www--xxxx-from、application/octet-stream
-        #对应的content-type类型，类似处理12306火车订票系统中验证码的方式，将文件以
-        #二进制流的形式写入指定的位置
+            # _subtype:表示指定文本类型的子类型；默认是文本类型；text/html、text/xml、
+        # text/json、application/www--xxxx-from、application/octet-stream
+        # 对应的content-type类型，类似处理12306火车订票系统中验证码的方式，将文件以
+        # 二进制流的形式写入指定的位置
         attach = MIMEText(fp.read(), _subtype="base64", _charset="utf-8")
         #为了能够上传任意格式的文件，将文件的父类型定义为二进制流
         attach["Content-Type"] = "application/octet-stream"

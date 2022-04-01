@@ -19,31 +19,13 @@ from utils.logger import Logger
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.chrome.service import Service
 from data.config import Config
-
+import sys
 
 logger = Logger(logger="BrowserDriver").getlog()
 
 class BrowserDriver(object):
-    # path = './drivers/'#这是获取相对路径的方法
-
     c = Config()
     path = c.path() + '/drivers/'
-
-    if platform.system() == 'Windows':  #windows系统
-        logger.info('获取到操作系统类型：Windows')
-        chrome_driver_path = path + 'chromedriver.exe'
-        logger.info('获取浏览器驱动路径：%s' % chrome_driver_path)
-        ie_driver_path = path + 'IEDriverServer.exe'
-    elif platform.system() == 'Linux':  #linux系统
-        logger.info('获取到操作系统类型：Linux')
-        chrome_driver_path = path + 'chromedriver_linux'
-        logger.info('获取浏览器驱动路径：%s' % chrome_driver_path)
-    elif platform.system() == 'Darwin':  #mac系统
-        logger.info('获取到操作系统类型：Mac')
-        chrome_driver_path = path + 'chromedriver'
-        logger.info('获取浏览器驱动路径：%s' % chrome_driver_path)
-    else:
-        logger.info('未获取到操作系统类型')
 
     def __init__(self, driver):
         self.driver = driver
@@ -53,7 +35,7 @@ class BrowserDriver(object):
         browser = self.c.get("browserType", "browserName")
         logger.info("选择的浏览器为: %s 浏览器" % browser)
         url = self.c.get('pathUrl', "URL")
-        logger.info("打开的URL为: %s" % url)
+        logger.info("测试的URL为: %s" % url)
         if browser == "Firefox":
             driver = webdriver.Firefox()
             logger.info("启动火狐浏览器")
@@ -67,10 +49,26 @@ class BrowserDriver(object):
             chrome_options.add_argument('--headless')  # 浏览器不提供可视化页面. linux下如果系统不支持可视化不加这条会启动失败
             chrome_options.add_argument('--disable-extensions')
             chrome_options.add_argument('lang=zh_CN.UTF-8')
-            s = Service(self.chrome_driver_path)
-            # driver = webdriver.Chrome(service=s, options=chrome_options)
-            driver = webdriver.Chrome(executable_path=self.chrome_driver_path, options=chrome_options) #用于Windows系统加载驱动使用
-            # driver = webdriver.Chrome() #用于linux系统加载驱动使用
+            if platform.system() == 'Windows':  # windows系统
+                logger.info('获取到操作系统类型：Windows')
+                chrome_driver_path = self.path + 'chromedriver.exe'
+                logger.info('获取浏览器驱动路径：%s' % chrome_driver_path)
+                ie_driver_path = self.path + 'IEDriverServer.exe'
+                driver = webdriver.Chrome(executable_path=chrome_driver_path, options=chrome_options)
+            elif platform.system() == 'Linux':  # linux系统
+                logger.info('获取到操作系统类型：Linux')
+                chrome_driver_path = self.path + 'chromedriver_linux'
+                logger.info('获取浏览器驱动路径：%s' % chrome_driver_path)
+                driver = webdriver.Chrome()
+            elif platform.system() == 'Darwin':  # mac系统
+                logger.info('获取到操作系统类型：Mac')
+                chrome_driver_path = self.path + 'chromedriver'
+                logger.info('获取浏览器驱动路径：%s' % chrome_driver_path)
+                s = Service(chrome_driver_path)
+                driver = webdriver.Chrome(service=s, options=chrome_options)
+            else:
+                logger.info('未获取到操作系统类型')
+
             logger.info("启动谷歌浏览器")
         else:
             logger.error("启动浏览器失败")
