@@ -23,29 +23,24 @@ class OrderReview(BrowserDriver):
 
     @property
     def clickOrderReview(self):
-        ActionChains(self.driver).move_to_element(self.find_element(*self.B2BOrderCenter_loc)).perform()
-        self.find_element(*self.orderReview_loc).click()
+        self.move_to_element(self.B2BOrderCenter_loc)
+        self.click(self.orderReview_loc)
 
     @property
     def state(self):
-        self.driver.switch_to.frame(self.iframe)
-        self.find_element(*self.open_loc).click()
-        time.sleep(2)
-        self.find_element(*self.state_loc).click()
-        time.sleep(2)
-        self.find_element(*self.stateALL_loc).click()
-        self.driver.switch_to.default_content()
+        self.switch_to_frame(self.iframe)
+        self.click(self.open_loc)
+        self.click(self.state_loc)
+        self.click(self.stateALL_loc)
+        self.switch_to_default_content()
 
     def organizationName(self, value):
-        self.driver.switch_to.frame(self.iframe)
-        self.find_element(*self.organization_loc).clear()
-        time.sleep(2)
-        self.find_element(*self.organization_loc).send_keys(value)
-        time.sleep(2)
+        self.switch_to_frame(self.iframe)
+        self.send_key(self.organization_loc, value)
 
     def clickSearch(self):
-        self.find_element(*self.search_loc).click()
+        self.click(self.search_loc)
 
     @property
     def listOrderReview1(self):
-        return self.find_element(*self.listOrderReview1_loc).text
+        return self.get_text(self.listOrderReview1_loc)

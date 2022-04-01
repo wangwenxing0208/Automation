@@ -20,19 +20,16 @@ class SaleOrder(BrowserDriver):
 
     @property
     def clickSaleOrder(self):
-        ActionChains(self.driver).move_to_element(self.find_element(*self.B2BOrderCenter_loc)).perform()
-        self.find_element(*self.saleOrder_loc).click()
+        self.move_to_element(self.B2BOrderCenter_loc)
+        self.click(self.saleOrder_loc)
 
     def organizationName(self, value):
-        self.driver.switch_to.frame(self.iframe)
-        self.find_element(*self.organization_loc).clear()
-        time.sleep(3)
-        self.find_element(*self.organization_loc).send_keys(value)
-        time.sleep(3)
+        self.switch_to_frame(self.iframe)
+        self.send_key(self.organization_loc, value)
 
     def clickSearch(self):
-        self.find_element(*self.search_loc).click()
+        self.click(self.search_loc)
 
     @property
     def listSaleOrder1(self):
-        return self.find_element(*self.listSaleOrder1_loc).text
+        return self.get_text(self.listSaleOrder1_loc)

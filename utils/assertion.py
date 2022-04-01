@@ -18,12 +18,12 @@ logger = Logger(logger='Assert').getlog()
 
 class Assert(object):
 
-    def assertEqual(self, expect, actual):
+    def assertequal(self, expect, actual):
         try:
             self.assertEqual(expect, actual)
-            return logger.info('预期结果：%s，测试结果：%s，测试通过' % expect, actual)
+            logger.info('预期结果：%s，测试结果：%s，测试通过' % (expect, actual))
         except Exception as e:
-            logger.error('预期结果：%s，测试结果：%s，测试不通过' % expect, actual)
+            logger.error('预期结果：%s，测试结果：%s，测试不通过' % (expect, actual))
             logger.error('错误信息：%s' % e)
             raise
 

@@ -122,6 +122,7 @@ class BrowserDriver(object):
         element = self.find_element(*loc)
         ActionChains(self.driver).move_to_element(element).perform()
 
+
     def back(self):
         """
         浏览器返回窗口
@@ -290,3 +291,13 @@ class BrowserDriver(object):
         alert = self.driver.switch_to.alert()
         rel = alert.text()
         return rel
+
+    def switch_to_frame(self, loc):
+        '''进入iframe'''
+        fra = self.driver.switch_to.frame(loc)
+        return fra
+
+    def switch_to_default_content(self):
+        '''退出iframe'''
+        con = self.driver.switch_to.default_content()
+        return con

@@ -22,24 +22,21 @@ class CreditRecalcula(BrowserDriver):
 
     @property
     def clickCreditRecalcula(self):
-        ActionChains(self.driver).move_to_element(self.find_element(*self.creditCenter_loc)).perform()
-        self.find_element(*self.creditRecalcula_loc).click()
+        self.move_to_element(self.creditCenter_loc)
+        self.click(self.creditRecalcula_loc)
 
     def controlStrategy(self, value):
-        self.driver.switch_to.frame(self.iframe)
-        time.sleep(8)
-        self.find_element(*self.controlStrategy_loc).send_keys(value)
+        self.switch_to_frame(self.iframe)
+        self.send_key(self.controlStrategy_loc, value)
 
     def customerName(self, value):
-        self.find_element(*self.open_loc).click()
-        time.sleep(2)
-        self.find_element(*self.customerName_loc).send_keys(value)
-        time.sleep(2)
+        self.click(self.open_loc)
+        self.send_key(self.customerName_loc)
 
     def clickRecalcula(self):
-        self.find_element(*self.Recalcula_loc).click()
-        self.find_element(*self.Recalcula_loc).click()
+        self.click(self.Recalcula_loc)
+        self.click(self.Recalcula_loc)
 
     @property
     def listCreditRecalcula1(self):
-        return self.find_element(*self.listCreditRecalcula1_loc).text
+        return self.get_text(self.listCreditRecalcula1_loc)

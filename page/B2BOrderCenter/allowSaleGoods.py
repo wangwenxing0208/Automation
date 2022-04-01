@@ -6,7 +6,6 @@
 
 from base.seleniums import *
 from selenium.webdriver.common.by import By
-from selenium.webdriver.common.action_chains import ActionChains
 
 class AllowSaleGoods(BrowserDriver):
     B2BOrderCenter_loc = (By.XPATH, '//*[@id="portal"]/div[1]/div[1]/ul/li[4]/div/a')
@@ -18,16 +17,16 @@ class AllowSaleGoods(BrowserDriver):
 
     @property
     def clickAllowSaleGoods(self):
-        ActionChains(self.driver).move_to_element(self.find_element(*self.B2BOrderCenter_loc)).perform()
-        self.find_element(*self.allowSaleGoods_loc).click()
+        self.move_to_element(self.B2BOrderCenter_loc)
+        self.click(self.allowSaleGoods_loc)
 
     def organizationName(self, value):
-        self.driver.switch_to.frame(self.iframe)
-        self.find_element(*self.organization_loc).send_keys(value)
+        self.switch_to_frame(self.iframe)
+        self.send_key(self.organization_loc, value)
 
     def clickSearch(self):
-        self.find_element(*self.search_loc).click()
+        self.click(self.search_loc)
 
     @property
     def listAllowSaleGoods1(self):
-        return self.find_element(*self.listAllowSaleGoods1_loc).text
+        return self.get_text(self.listAllowSaleGoods1_loc)

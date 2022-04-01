@@ -23,26 +23,24 @@ class CustomerApply(BrowserDriver):
 
     @property
     def clickCustomerApply(self):
-        ActionChains(self.driver).move_to_element(self.find_element(*self.dhanneCenter_loc)).perform()
-        self.find_element(*self.customerApply_loc).click()
+        self.move_to_element(self.dhanneCenter_loc)
+        self.click(self.customerApply_loc)
 
     @property
     def state(self):
-        self.driver.switch_to.frame(self.iframe)
-        self.find_element(*self.open_loc).click()
-        time.sleep(3)
-        self.find_element(*self.state_loc).click()
-        time.sleep(3)
-        self.find_element(*self.stateALL_loc).click()
-        self.driver.switch_to.default_content()
+        self.switch_to_frame(self.iframe)
+        self.click(self.open_loc)
+        self.click(self.state_loc)
+        self.click(self.stateALL_loc)
+        self.switch_to_default_content()
 
     def customerName(self, value):
-        self.driver.switch_to.frame(self.iframe)
-        self.find_element(*self.customerName_loc).send_keys(value)
+        self.switch_to_frame(self.iframe)
+        self.send_key(self.customerName_loc)
 
     def clickSearch(self):
-        self.find_element(*self.search_loc).click()
+        self.click(self.search_loc)
 
     @property
     def listCustomerApply1(self):
-        return self.find_element(*self.listCustomerApply1_loc).text
+        return self.get_text(self.listCustomerApply1_loc)
