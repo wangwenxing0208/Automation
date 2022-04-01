@@ -19,7 +19,7 @@ import time
 from data.config import Config
 
 class Logger(object):
-    def __init__(self,logger):
+    def __init__(self, logger):
         '''
         将日志保存到指定的路径文件中
         指定日志的级别，以及调用文件
@@ -30,7 +30,7 @@ class Logger(object):
         self.logger.setLevel(logging.DEBUG)
 
         #创建一个handle，用来写入日志文件
-        now = time.strftime("%Y-%m-%d_%H_%M_%S_")
+        now = time.strftime("%Y-%m-%d_%H_%M_%S")
         # log_path = './log/'
         path = Config().path()
         LOG_PATH = path + '/log/'
@@ -56,20 +56,3 @@ class Logger(object):
 
     def getlog(self):
         return self.logger
-
-class GetLog(object):
-    def __init__(self):
-        self.get_log = logging.getLogger("test")
-        self.get_log.setLevel(logging.INFO)
-
-    #声明一个定义格式的方法
-    def get_formatter(self):
-        #定义日志格式
-        get_formatter = logging.Formatter("%(asctime)s - %(filename)s\
-                                          [level: %(levelname)s] - [lineNo: %(lineno)d]' %(pathname)s %(message)s")
-        return get_formatter
-
-    def get_handle(self, logpath):
-        _get_handle = logging.FileHandler(logpath)
-        _get_handle.setFormatter(self.get_formatter())
-        self.logger.addHandler(_get_handle)
