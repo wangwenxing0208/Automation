@@ -20,18 +20,17 @@ class TraceFlow(BrowserDriver):
 
     @property
     def clickTraceFlow(self):
-        ActionChains(self.driver).move_to_element(self.find_element(*self.uniqueCode_loc)).perform()
-        self.find_element(*self.traceFlow_loc).click()
+        self.move_to_element(self.uniqueCode_loc)
+        self.click(*self.traceFlow_loc)
 
     def boxCode(self, value):
-        self.driver.switch_to.frame(self.iframe)
-        time.sleep(2)
-        self.find_element(*self.boxCode_loc).send_keys(value)
+        self.switch_to_frame(self.iframe)
+        self.send_key(self.boxCode_loc, value)
 
     @property
     def clickSearch(self):
-        self.find_element(*self.search_loc).click()
+        self.click(*self.search_loc)
 
     @property
     def listTraceFlow1(self):
-        return self.find_element(*self.listTraceFlow1_loc).text
+        return self.get_text(self.listTraceFlow1_loc)

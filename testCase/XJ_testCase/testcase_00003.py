@@ -7,9 +7,10 @@
 from page.login.init import *
 from page.systemConfiguration.ncSyncMonitor import *
 from common.login import *
+from utils.assertion import Assertion
 import time
 
-class TestcaseNCSyncMonitor(Init,NCSyncMonitor,Login):
+class TestcaseNCSyncMonitor(Init,NCSyncMonitor,Login,Assert):
     def test_ncSyncMonitor(self, value='1'):
         '''NC同步监控是否能够正常打开，查询是否正常'''
         self.successLogin()
@@ -17,7 +18,7 @@ class TestcaseNCSyncMonitor(Init,NCSyncMonitor,Login):
         time.sleep(3)
         self.clickSearch
         time.sleep(3)
-        self.assertEqual(self.listNumber1, value)
+        self.assertequal(value, self.listNumber1)
 
 if __name__ == '__main__':
     unittest.main(verbosity=2)

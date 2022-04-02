@@ -19,12 +19,12 @@ class Users(BrowserDriver):
 
     @property
     def clickUser(self):
-        ActionChains(self.driver).move_to_element(self.find_element(*self.systemConfiguration_loc)).perform()
-        self.find_element(*self.user_loc).click()
+        self.move_to_element(self.systemConfiguration_loc)
+        self.click(self.user_loc)
 
     @property
     def advancedSearch(self):
-        self.driver.switch_to.frame(self.iframe)
+        self.switch_to_frame(self.iframe)
         self.click(self.pullDown_loc)
 
     def userCode(self, usercode):

@@ -20,17 +20,16 @@ class ChannelStock(BrowserDriver):
 
     @property
     def clickChannelStock(self):
-        ActionChains(self.driver).move_to_element(self.find_element(*self.stockCenter_loc)).perform()
-        self.find_element(*self.ChannelStock_loc).click()
+        self.move_to_element(self.stockCenter_loc)
+        self.click(self.ChannelStock_loc)
 
     def customerName(self, value):
-        self.driver.switch_to.frame(self.iframe)
-        time.sleep(3)
-        self.find_element(*self.customer_loc).send_keys(value)
+        self.switch_to_frame(self.iframe)
+        self.send_key(self.customer_loc, value)
 
     def clickSearch(self):
-        self.find_element(*self.search_loc).click()
+        self.click(self.search_loc)
 
     @property
     def listChannelStock1(self):
-        return self.find_element(*self.listChannelStock1_loc).text
+        return self.get_text(self.listChannelStock1_loc)

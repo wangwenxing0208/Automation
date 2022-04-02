@@ -26,36 +26,26 @@ class SearchRemainMoney(BrowserDriver):
 
     @property
     def clickSearchRemainMoney(self):
-        ActionChains(self.driver).move_to_element(self.find_element(*self.settlementCenter_loc)).perform()
-        self.find_element(*self.searchRemainMoney_loc).click()
+        self.move_to_element(self.settlementCenter_loc)
+        self.click(self.searchRemainMoney_loc)
 
     def financeOrganizationName(self, value1):
-        self.driver.switch_to.frame(self.iframe)
-        time.sleep(3)
-        self.find_element(*self.financeOrganization_loc).send_keys(value1)
+        self.switch_to_frame(self.iframe)
+        self.send_key(self.financeOrganization_loc, value1)
 
     def reconciliationDate(self):
-        self.find_element(*self.reconciliationDate_loc).click()
-        time.sleep(3)
-        self.find_element(*self.date_loc).click()
-        time.sleep(3)
-        self.find_element(*self.date_loc).click()
-        # js = "document.getElementByXpath(startDate_loc).removeAttribute('readonly')"
-        # self.driver.execute_script(js)
-        # js2 = "document.getElementByXpath(endDate_loc).removeAttribute('readonly')"
-        # self.driver.execute_script(js2)
-        # self.find_element(*self.startDate_loc).send_keys('002021/06/06')
-        # self.find_element(*self.endDate_loc).send_keys('002021/06/06')
+        self.click(self.reconciliationDate_loc)
+        self.click(self.date_loc)
+        self.click(self.date_loc)
 
 
     def customerName(self, value2):
-        self.find_element(*self.open_loc).click()
-        time.sleep(3)
-        self.find_element(*self.customerName_loc).send_keys(value2)
+        self.click(self.open_loc)
+        self.send_key(self.customerName_loc, value2)
 
     def clickSearch(self):
-        self.find_element(*self.search_loc).click()
+        self.click(self.search_loc)
 
     @property
     def listSearchRemainMoney1(self):
-        return self.find_element(*self.listSearchRemainMoney1_loc).text
+        return self.get_text(self.listSearchRemainMoney1_loc)

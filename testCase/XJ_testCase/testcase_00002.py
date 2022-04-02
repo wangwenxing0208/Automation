@@ -7,9 +7,10 @@
 from page.login.init import *
 from page.systemConfiguration.roles import *
 from common.login import *
+from utils.assertion import Assertion
 import time
 
-class TestcaseRoles(Init,Roles,Login):
+class TestcaseRoles(Init,Roles,Login,Assert):
     def test_roles(self, value='EC_JXS'):
         '''角色是否能够正常打开，查询是否正常'''
         self.successLogin()
@@ -19,7 +20,7 @@ class TestcaseRoles(Init,Roles,Login):
         time.sleep(3)
         self.roleCode(value)
         time.sleep(3)
-        self.assertEqual(self.listRoleCode1, value)
+        self.assertequal(value, self.listRoleCode1)
 
 if __name__ == '__main__':
     unittest.main(verbosity=2)

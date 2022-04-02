@@ -16,7 +16,7 @@ from utils.logger import Logger
 
 logger = Logger(logger='Assert').getlog()
 
-class Assert(object):
+class Assertion(object):
 
     def assertequal(self, expect, actual):
         try:

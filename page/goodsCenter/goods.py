@@ -18,16 +18,16 @@ class Goods(BrowserDriver):
 
     @property
     def clickGoods(self):
-        ActionChains(self.driver).move_to_element(self.find_element(*self.goodsCenter_loc)).perform()
-        self.find_element(*self.goods_loc).click()
+        self.move_to_element(self.goodsCenter_loc)
+        self.click(self.goods_loc)
 
     def goodCode(self, value):
-        self.driver.switch_to.frame(self.iframe)
-        self.find_element(*self.goodCode_loc).send_keys(value)
+        self.switch_to_frame(self.iframe)
+        self.send_keys(self.goodCode_loc, value)
 
     def clickSearch(self):
-        self.find_element(*self.search_loc).click()
+        self.click(self.search_loc)
 
     @property
     def listGoods1(self):
-        return self.find_element(*self.listGoods1_loc).text
+        return self.get_text(self.listGoods1_loc)

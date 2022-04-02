@@ -17,14 +17,14 @@ class NCSyncMonitor(BrowserDriver):
 
     @property
     def clickNCSyncMonitor(self):
-        ActionChains(self.driver).move_to_element(self.find_element(*self.systemConfiguration_loc)).perform()
-        self.find_element(*self.ncSyncMonitor_loc).click()
+        self.move_to_element(self.systemConfiguration_loc)     # 移动到系统配置
+        self.click(self.ncSyncMonitor_loc)  # 点击NC同步监控
 
     @property
     def clickSearch(self):
-        self.driver.switch_to.frame(self.iframe)
-        self.find_element(*self.search_loc).click()
+        self.switch_to_frame(self.iframe)     # 切换到iframe
+        self.click(self.search_loc)  # 点击搜索
 
     @property
     def listNumber1(self):
-        return self.find_element(*self.listNumber1_loc).text
+        return self.get_text(self.listNumber1_loc)  # 获取列表数量

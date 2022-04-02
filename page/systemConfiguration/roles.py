@@ -19,18 +19,18 @@ class Roles(BrowserDriver):
 
     @property
     def clickRoles(self):
-        ActionChains(self.driver).move_to_element(self.find_element(*self.systemConfiguration_loc)).perform()
-        self.find_element(*self.role_loc).click()
+        self.move_to_element(self.systemConfiguration_loc)  # 移动到元素
+        self.click(self.role_loc)  # 点击元素
 
     @property
     def advancedSearch(self):
-        self.driver.switch_to.frame(self.iframe)
-        self.find_element(*self.pullDown_loc).click()
+        self.switch_to_frame(self.iframe)   # 切换到iframe
+        self.click(self.pullDown_loc)   # 点击下拉框
 
     def roleCode(self, usercode):
-        self.find_element(*self.roleCode_loc).send_keys(usercode)
-        self.find_element(*self.roleCodeSearch_loc).click()
+        self.send_keys(self.roleCode_loc, usercode)     # 输入角色编码
+        self.click(self.roleCodeSearch_loc) # 点击搜索按钮
 
     @property
     def listRoleCode1(self):
-        return self.find_element(*self.listroleCode1_loc).text
+        return self.get_text(self.listroleCode1_loc)  # 获取角色编码

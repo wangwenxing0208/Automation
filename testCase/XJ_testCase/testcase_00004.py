@@ -7,9 +7,10 @@
 from page.login.init import *
 from page.dhanneCenter.customer import *
 from common.login import *
+from utils.assertion import Assertion
 import time
 
-class TestcaseCustomer(Init,Customer,Login):
+class TestcaseCustomer(Init, Customer, Login, Assert):
     def test_customer(self, value='232004'):
         '''客户档案是否能够正常打开，查询是否正常'''
         self.successLogin()
@@ -19,7 +20,7 @@ class TestcaseCustomer(Init,Customer,Login):
         time.sleep(2)
         self.clickSearch
         time.sleep(2)
-        self.assertEqual(self.listCustomer1, value)
+        self.assertequal(value, self.listCustomer1)
 
 if __name__ == '__main__':
     unittest.main(verbosity=2)
