@@ -7,9 +7,10 @@
 from page.login.init import *
 from page.B2BOrderCenter.headquartersApproval import *
 from common.login import *
+from utils.assertion import Assertion
 import time
 
-class TestcaseHeadquartersApproval(Init,HeadquartersApproval,Login):
+class TestcaseHeadquartersApproval(Init,HeadquartersApproval,Login,Assertion):
     def test_headquartersApproval(self, value='黑龙江飞鹤乳业销售有限公司'):
         '''总部审批是否能够正常打开，查询是否正常'''
         self.successLogin()
@@ -20,7 +21,7 @@ class TestcaseHeadquartersApproval(Init,HeadquartersApproval,Login):
         self.organizationName(value)
         time.sleep(2)
         self.clickSearch
-        self.assertEqual(self.listHeadquartersApproval1, value)
+        self.assertequal(value, self.listHeadquartersApproval1)
 
 if __name__ == '__main__':
     unittest.main(verbosity=2)

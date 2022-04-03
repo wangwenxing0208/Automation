@@ -7,9 +7,10 @@
 from page.login.init import *
 from page.B2BOrderCenter.saleOrder import *
 from common.login import *
+from utils.assertion import Assertion
 import time
 
-class TestcaseSaleOrder(Init,SaleOrder,Login):
+class TestcaseSaleOrder(Init,SaleOrder,Login,Assertion):
     def test_saleOrder(self, value='黑龙江飞鹤乳业销售有限公司'):
         '''销售订单是否能够正常打开，查询是否正常'''
         self.successLogin()
@@ -19,7 +20,7 @@ class TestcaseSaleOrder(Init,SaleOrder,Login):
         time.sleep(2)
         self.clickSearch
         time.sleep(2)
-        self.assertEqual(self.listSaleOrder1, value)
+        self.assertequal(value, self.listSaleOrder1)
 
 if __name__ == '__main__':
     unittest.main(verbosity=2)

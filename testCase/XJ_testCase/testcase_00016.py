@@ -7,9 +7,10 @@
 from page.login.init import *
 from page.settlementCenter.receivableBill import *
 from common.login import *
+from utils.assertion import Assertion
 import time
 
-class TestcaseReceivableBill(Init,ReceivableBill,Login):
+class TestcaseReceivableBill(Init,ReceivableBill,Login,Assertion):
     def test_ReceivableBill(self, value='黑龙江飞鹤乳业销售有限公司'):
         '''应收单是否能够正常打开，查询是否正常'''
         self.successLogin()
@@ -18,7 +19,7 @@ class TestcaseReceivableBill(Init,ReceivableBill,Login):
         self.organizationName(value)
         time.sleep(2)
         self.clickSearch
-        self.assertEqual(self.listReceivableBill1, value)
+        self.assertequal(value, self.listReceivableBill1)
 
 if __name__ == '__main__':
     unittest.main(verbosity=2)

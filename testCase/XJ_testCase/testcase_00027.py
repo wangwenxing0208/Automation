@@ -7,9 +7,10 @@
 from page.login.init import *
 from page.planCenter.companyPlan import *
 from common.login import *
+from utils.assertion import Assertion
 import time
 
-class TestcaseCompanyPlan(Init,CompanyPlan,Login):
+class TestcaseCompanyPlan(Init,CompanyPlan,Login,Assertion):
     def test_companyPlan(self, value='黑龙江飞鹤乳业销售有限公司'):
         '''公司要货计划是否能够正常打开，查询是否正常'''
         self.successLogin()
@@ -19,7 +20,7 @@ class TestcaseCompanyPlan(Init,CompanyPlan,Login):
         time.sleep(2)
         self.clickSearch
         time.sleep(10)
-        self.assertEqual(self.listCompanyPlan1, value)
+        self.assertequal(value, self.listCompanyPlan1)
 
 if __name__ == '__main__':
     unittest.main(verbosity=2)

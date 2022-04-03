@@ -7,9 +7,10 @@
 from page.login.init import *
 from page.B2BOrderCenter.allowSaleGoods import *
 from common.login import *
+from utils.assertion import Assertion
 import time
 
-class TestcaseAllowSaleGoods(Init,AllowSaleGoods,Login):
+class TestcaseAllowSaleGoods(Init,AllowSaleGoods,Login,Assertion):
     def test_allowSaleGoods(self, value='黑龙江飞鹤乳业销售有限公司'):
         '''允销目录是否能够正常打开，查询是否正常'''
         self.successLogin()
@@ -19,7 +20,7 @@ class TestcaseAllowSaleGoods(Init,AllowSaleGoods,Login):
         time.sleep(2)
         self.clickSearch
         time.sleep(2)
-        self.assertEqual(self.listAllowSaleGoods1, value)
+        self.assertequal(value, self.listAllowSaleGoods1)
 
 if __name__ == '__main__':
     unittest.main(verbosity=2)

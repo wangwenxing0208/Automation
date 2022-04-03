@@ -7,9 +7,10 @@
 from page.login.init import *
 from page.uniqueCode.traceFlow import *
 from common.login import *
+from utils.assertion import Assertion
 import time
 
-class TestcaseTraceFlow(Init,TraceFlow,Login):
+class TestcaseTraceFlow(Init,TraceFlow,Login,Assertion):
     def test_traceFlow(self, value1='200326282629201890', value2='1'):
         '''追溯流行明细是否能够正常打开，查询是否正常'''
         self.successLogin()
@@ -19,10 +20,7 @@ class TestcaseTraceFlow(Init,TraceFlow,Login):
         time.sleep(2)
         self.clickSearch
         time.sleep(20)
-        if self.assertEqual(self.listTraceFlow1, value2):
-            self.info(self.listTraceFlow1)
-        else:
-            self.error(self.listTraceFlow1)
+        self.assertequal(value2, self.listTraceFlow1)
 
 
 if __name__ == '__main__':

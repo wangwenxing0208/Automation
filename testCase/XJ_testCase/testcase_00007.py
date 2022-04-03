@@ -7,9 +7,11 @@
 from page.login.init import *
 from page.goodsCenter.goodsCategory import *
 from common.login import *
+from utils.assertion import Assertion
+
 import time
 
-class TestcaseGoodsCategory(Init,GoodsCategory,Login):
+class TestcaseGoodsCategory(Init,GoodsCategory,Login,Assertion):
     def test_GoodsCategory(self, value='06'):
         '''商品分类是否能够正常打开，查询是否正常'''
         self.successLogin()
@@ -19,7 +21,7 @@ class TestcaseGoodsCategory(Init,GoodsCategory,Login):
         time.sleep(2)
         self.clickSearch
         time.sleep(2)
-        self.assertEqual(self.listGoodsCategory1, value)
+        self.assertequal(value, self.self.listGoodsCategory1)
 
 if __name__ == '__main__':
     unittest.main(verbosity=2)

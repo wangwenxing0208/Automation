@@ -7,9 +7,10 @@
 from page.login.init import *
 from page.marketCastCenter.customerCast import *
 from common.login import *
+from utils.assertion import Assertion
 import time
 
-class TestcaseCustomerCast(Init,CustomerCast,Login):
+class TestcaseCustomerCast(Init,CustomerCast,Login,Assertion):
     def test_customerCast(self, value='黑龙江飞鹤乳业销售有限公司'):
         '''客户费用单是否能够正常打开，查询是否正常'''
         self.successLogin()
@@ -19,7 +20,7 @@ class TestcaseCustomerCast(Init,CustomerCast,Login):
         time.sleep(2)
         self.clickSearch
         time.sleep(10)
-        self.assertEqual(self.listCustomerCast1, value)
+        self.assertequal(value, self.listCustomerCast1)
 
 if __name__ == '__main__':
     unittest.main(verbosity=2)

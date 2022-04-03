@@ -7,9 +7,10 @@
 from page.login.init import *
 from page.settlementCenter.searchRemainMoney import *
 from common.login import *
+from utils.assertion import Assertion
 import time
 
-class TestcaseSearchRemainMoney(Init,SearchRemainMoney,Login):
+class TestcaseSearchRemainMoney(Init,SearchRemainMoney,Login,Assertion):
     def test_searchRemainMoney(self, value1='黑龙江飞鹤乳业销售有限公司', value2='哈尔滨迪亲商贸有限公司'):
         '''应收余额查询是否能够正常打开，查询是否正常'''
         self.successLogin()
