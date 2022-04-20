@@ -6,12 +6,9 @@
 
 from base.seleniums import *
 from selenium.webdriver.common.by import By
-from selenium.webdriver.common.action_chains import ActionChains
-
-import time
 
 class CustomerPlan(BrowserDriver):
-    planCenter_loc = (By.XPATH, '//*[@id="portal"]/div[1]/div[1]/ul/li[11]/div/a')
+    planCenter_loc = (By.XPATH, '//*[@id="portal"]/div[1]/div[1]/ul/li[13]/div/a')
     customerPlan_loc = (By.LINK_TEXT, '客户要货计划')
     iframe = 'PlanCustomer'
     organization_loc = (By.XPATH, '/html/body/div[2]/div[1]/div/div/div[1]/ui-searchbox/div/div[1]/div[3]/div/input')

@@ -21,37 +21,37 @@ from utils.logger import Logger
 import time
 from data.config import Config
 
-logger = Logger(logger='BasePage').getlog()
+logger = Logger(logger='BasePage').getlog()  # 实例化日志类
 
 
-class BrowserDriver(object):
+class BrowserDriver(object):    # 创建浏览器驱动类
 
-    def __init__(self, driver):
+    def __init__(self, driver): # 初始化driver
         """
         :param driver:打开浏览器驱动
         """
-        self.driver = driver
-        self.conf = Config()
+        self.driver = driver    # 将driver实例化
+        self.conf = Config()    # 实例化配置文件类
 
-    def get_page_title(self):
-        logger.info("当前页面的title为: %s" % self.driver.title)
-        return self.driver.title
+    def get_page_title(self):   # 获取页面标题
+        logger.info("当前页面的title为: %s" % self.driver.title)  # 获取当前页面title
+        return self.driver.title    # 返回title
 
-    def find_element(self, *loc):
+    def find_element(self, *loc):    # 定位元素
         try:
             # 元素可见时，返回查找到的元素；以下入参为元组的元素，需要加*
             WebDriverWait(self.driver, 30).until(lambda driver: driver.find_element(*loc).is_displayed())
-            return self.driver.find_element(*loc)
-        except NoSuchElementException:
-            logger.warning('找不到定位元素: %s' % loc[1])
+            return self.driver.find_element(*loc)    # 返回元素
+        except NoSuchElementException:  # 找不到元素
+            logger.warning('找不到定位元素: %s' % loc[1])  # 输出日志
             # self.log.myloggger('Can not find element: %s' % loc[1], flag=2)
-            raise
-        except TimeoutException:
-            logger.warning('查找元素超时: %s' % loc[1])
+            raise   # 抛出异常
+        except TimeoutException:    # 查找元素超时
+            logger.warning('查找元素超时: %s' % loc[1])    # 输出日志
             # self.log.myloggger('Can not find element: %s' % loc[1], flag=2)
-            raise
+            raise   # 抛出异常
 
-    def find_elements(self, *loc):
+    def find_elements(self, *loc):  # 定位一组元素
         try:
             # 元素可见时，返回查找到的元素；以下入参为元组的元素，需要加*
             WebDriverWait(self.driver, 30).until(lambda driver: driver.find_elements(*loc).is_displayed())
@@ -61,11 +61,11 @@ class BrowserDriver(object):
             # self.log.myloggger('Can not find element: %s' % loc[1], flag=2)
             raise
         except TimeoutException:
-            logger.warning('查找元素超时: %s' % loc[1])
+            logger.warning('查找元素超时: %s' % loc[1])   # 输出日志
             # self.log.myloggger('Can not find element: %s' % loc[1], flag=2)
             raise
 
-    def get_screent_img(self, value):
+    def get_screent_img(self, value):    # 截图
         '''将页面截图下来'''
         file_path = './report/screenshot/'
         image_path = self.conf.path()
